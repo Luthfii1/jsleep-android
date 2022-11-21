@@ -10,6 +10,7 @@ public class Account extends Serializable
     public String password;
     public  static final String REGEX_EMAIL = "^[a-zA-Z0-9 ][a-zA-Z0-9]+@[a-zA-Z.]+?\\.[a-zA-Z]+?$";
     public  static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+
     public Account(String name,String email,String password){
         super();
         this.name = name;
@@ -19,7 +20,12 @@ public class Account extends Serializable
     }
 
     public String toString(){
-        return "Account\nId: " + super.id + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password;
+        return "Account{" +
+                "balance= " + balance +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", renter=" + renter + '}';
     }
 
     public boolean validate(){
