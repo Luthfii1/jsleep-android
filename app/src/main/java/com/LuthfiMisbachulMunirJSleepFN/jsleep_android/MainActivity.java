@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 import com.google.gson.Gson;
 
@@ -32,6 +33,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+    protected static Account accountLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
