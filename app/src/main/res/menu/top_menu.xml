@@ -15,10 +15,11 @@
         app:showAsAction="collapseActionView|always"
         />
 
-    <item android:id="@+id/add_button"
+    <item
+        android:id="@+id/add_button"
         android:icon="@drawable/ic_baseline_add_box_24"
         android:title="Add Box Button"
+        android:visibility="visible"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="collapseActionView|always"
-        />
+        app:showAsAction="collapseActionView|always" />
 </menu>

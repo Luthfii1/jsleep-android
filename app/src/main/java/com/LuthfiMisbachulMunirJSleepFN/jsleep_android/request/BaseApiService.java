@@ -1,5 +1,14 @@
 package com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.BedType;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.City;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Facility;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Renter;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -16,4 +25,24 @@ public interface BaseApiService {
 
     @POST("account/register")
     Call<Account> register (@Query("name") String Name, @Query("email") String Email, @Query("password") String Password);
+
+    @GET("renter/getAllRoom")
+    Call<List<Room>> getAllRoom (@Query("page") int page, @Query("pageSize") int pageSize);
+
+    @POST("/{id}/registerRenter")
+    Call<Renter> registerRenter(@Path("id") int id,
+                                      @Query("username") String username,
+                                      @Query("address") String address,
+                                      @Query("phoneNumber") String phoneNumber);
+
+    @POST("create")
+    Call<Room> create(@Path("accountId") int id,
+                      @Query("name") String name,
+                      @Query("size") int size,
+                      @Query("price") int price,
+                      @Query("facility") ArrayList<Facility> facility,
+                      @Query("city")City city,
+                      @Query("address") String address,
+                      @Query("bedType")BedType bedType
+                      );
 }

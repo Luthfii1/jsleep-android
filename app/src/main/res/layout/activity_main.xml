@@ -5,6 +5,7 @@
     android:id="@+id/MainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F7F7F7"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -27,14 +28,18 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="PREV" />
+            android:backgroundTint="#6D9886"
+            android:text="PREV"
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="NEXT" />
+            android:backgroundTint="#6D9886"
+            android:text="NEXT"
+            android:textColor="#fff" />
 
         <EditText
             android:id="@+id/LetterPaginate"
@@ -50,6 +55,7 @@
             android:id="@+id/goButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="#6D9886"
             android:text="GO" />
     </LinearLayout>
 
@@ -58,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
+        android:backgroundTint="#F2E7D5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
