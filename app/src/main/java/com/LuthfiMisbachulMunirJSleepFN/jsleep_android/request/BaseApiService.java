@@ -3,6 +3,7 @@ import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.BedType;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.City;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Facility;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Payment;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Renter;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 
@@ -23,6 +24,12 @@ public interface BaseApiService {
     @POST("account/login")
     Call<Account> login (@Query("email") String mail, @Query("password") String Password);
 
+    @POST("/account/{id}/topUp")
+    Call<Boolean> topUpRequest (
+            @Path("id") int id,
+            @Query("balance") double balance
+    );
+
     @POST("account/register")
     Call<Account> register (@Query("name") String Name, @Query("email") String Email, @Query("password") String Password);
 
@@ -35,14 +42,30 @@ public interface BaseApiService {
                                       @Query("address") String address,
                                       @Query("phoneNumber") String phoneNumber);
 
-    @POST("create")
-    Call<Room> create(@Path("accountId") int id,
-                      @Query("name") String name,
-                      @Query("size") int size,
-                      @Query("price") int price,
-                      @Query("facility") ArrayList<Facility> facility,
-                      @Query("city")City city,
-                      @Query("address") String address,
-                      @Query("bedType")BedType bedType
-                      );
+    @POST("/room/create")
+    Call<Room> createRoomRequest (
+            @Query("accountId") int accountId,
+            @Query("name") String name,
+            @Query("size") int size,
+            @Query("price") double price,
+            @Query("facility") ArrayList<Facility> facility,
+            @Query("city") City city,
+            @Query("address") String address,
+            @Query("bedType")BedType bedType
+    );
+
+    @POST("/payment/create")
+    Call<Payment> createBookingRequest (
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("roomId") int roomId,
+            @Query("from") String from,
+            @Query("to") String to
+    );
+
+    @POST("/payment/{id}/cancel")
+    Call<Boolean> cancelPaymentRequest (@Path("id") int id);
+
+    @POST("/payment/{id}/accept")
+    Call<Boolean> acceptPaymentRequest (@Path("id") int id);
 }

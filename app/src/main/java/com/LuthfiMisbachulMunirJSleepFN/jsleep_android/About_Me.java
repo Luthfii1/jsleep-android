@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import retrofit2.*;
@@ -21,18 +23,11 @@ import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
 public class About_Me extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
-
-    TextView name,email, balance;
-
-    Button ButtonRegisterRen;
-    CardView CardRegister;
-
-    Button ButtonConfirm, ButtonCancel;
-    CardView CardRenterReg;
-    TextView NameRent, AddRent, PhoneRent;
-
-    CardView CardDetailed;
-    TextView InpName, InpAdd, InpPhone;
+    Button ButtonConfirm, ButtonCancel, ButtonRegisterRen;
+    CardView CardRenterReg, CardRegister, CardDetailed;
+    TextView NameRent, AddRent, PhoneRent, name, email, balance;
+    EditText InpName, InpAdd, InpPhone, topUpBalance;
+    LinearLayout renterButtonLayout, registerLayout, dataLayout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,21 +35,26 @@ public class About_Me extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
+        //Connect to API
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
+
         //Var for information Account
         name = findViewById(R.id.inputNameAboutMe);
         email = findViewById(R.id.inputEmailAboutMe);
         balance = findViewById(R.id.inputBalanceAboutMe);
+        NameRent = findViewById(R.id.inputName_2);
+        AddRent = findViewById(R.id.inputAddress_2);
+        PhoneRent = findViewById(R.id.inputPhone_2);
         if(balance == null){
             balance.setText("0");
         }
+
         //Save data to accountLogin
         name.setText(MainActivity.accountLogin.name);
         email.setText(MainActivity.accountLogin.email);
         balance.setText(String.valueOf(MainActivity.accountLogin.balance));
 
-        //Connect to API
-        mApiService = UtilsApi.getApiService();
-        mContext = this;
 
         //For register Button
         ButtonRegisterRen = findViewById(R.id.registerRenter_Button);
