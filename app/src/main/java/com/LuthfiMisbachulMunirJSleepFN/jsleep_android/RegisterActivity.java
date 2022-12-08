@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
+                    System.out.println("Succes");
                     Toast.makeText(mContext, "Register Successful", Toast.LENGTH_SHORT).show();
                     Intent move = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(move);
@@ -56,7 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext, "Already Registered", Toast.LENGTH_SHORT).show();
+                System.out.println(t.toString());
+                System.out.println("Failed");
+                Toast.makeText(mContext, "Register Called", Toast.LENGTH_SHORT).show();
             }
         });
         return null;

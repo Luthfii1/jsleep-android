@@ -23,15 +23,21 @@ public class LoginActivity extends AppCompatActivity {
     BaseApiService mApiService;
     EditText username, password;
     Context mContext;
+    TextView register;
+    Button ButtonLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mApiService = UtilsApi.getApiService();
         mContext = this;
-        TextView register = findViewById(R.id.RegisterLogin);
-        Button  main = findViewById(R.id.LoginButtonLogin);
+
+        register = findViewById(R.id.RegisterLogin);
+        ButtonLogin = findViewById(R.id.LoginButtonLogin);
+
         username = findViewById(R.id.UsernameLogin);
         password = findViewById(R.id.PasswordLogin);
         register.setOnClickListener(new View.OnClickListener(){
@@ -41,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(move);
             }
         });
-        main.setOnClickListener(new View.OnClickListener(){
+        ButtonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Account account = requestLogin();
@@ -86,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
+                System.out.println("failed");
+                System.out.println(t.toString());
                 Toast.makeText(mContext, "Login Failed", Toast.LENGTH_SHORT).show();
             }
         });

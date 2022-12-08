@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".About_Me">
-
+    
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -124,35 +124,36 @@
         android:layout_width="146dp"
         android:layout_height="48dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="158dp"
         android:layout_marginBottom="366dp"
         android:ems="10"
+        android:hint="Amount"
         android:inputType="number|numberDecimal"
-        android:text="Amount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputNameAboutMe4"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintVertical_bias="0.657" />
 
     <Button
         android:id="@+id/buttonTopUpAboutMe"
         android:layout_width="123dp"
         android:layout_height="48dp"
         android:layout_marginStart="61dp"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="71dp"
         android:layout_marginBottom="373dp"
         android:backgroundTint="#7D8F69"
         android:text="Top Up"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/inputTopUpAboutMe"
         app:layout_constraintTop_toBottomOf="@+id/inputEmailAboutMe"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.821" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_register"
@@ -173,9 +174,19 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
             android:backgroundTint="#7D8F69"
-            android:text="Register Center"
+            android:text="Register Renter"
             android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/address_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="80dp"
+            android:text="Address"
+            android:textSize="18dp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -199,8 +210,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:ems="10"
+            android:hint="Name"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/inputAddress_2"
@@ -209,8 +221,9 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="60dp"
             android:ems="10"
+            android:hint="Address"
             android:inputType="textPersonName"
-            android:text="Address" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/inputPhone_2"
@@ -219,8 +232,9 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="120dp"
             android:ems="10"
+            android:hint="Phone Number"
             android:inputType="textPersonName"
-            android:text="Phone Number" />
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/registerButton_2"
@@ -249,9 +263,9 @@
         android:layout_width="411dp"
         android:layout_height="359dp"
         android:layout_gravity="center"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="1dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -260,13 +274,14 @@
 
 
         <TextView
-            android:id="@+id/Name_3"
+            android:id="@+id/name_rent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:layout_marginTop="20dp"
             android:text="Name"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/Address_3"
@@ -287,30 +302,30 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/NameInfo_3"
+            android:id="@+id/Renter_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="220dp"
             android:layout_marginTop="20dp"
-            android:text="Netlab Store"
+            android:text="NameHarusnya"
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/AddressInfo_3"
+            android:id="@+id/Renter_Address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="220dp"
             android:layout_marginTop="80dp"
-            android:text="Gedung DTE Lantai 2"
+            android:text="AlamatHarusnya"
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/PhoneInfo_3"
+            android:id="@+id/Renter_Phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="220dp"
             android:layout_marginTop="140dp"
-            android:text="081244324590"
+            android:text="Telfonharusnya"
             android:textSize="18dp" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,16 +29,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateRoom extends AppCompatActivity {
-    Button ButtonCreate, ButtonCancel;
     BaseApiService mApiService;
-    ArrayAdapter adapterCity, adapterBedType;
-    CheckBox ac, refrigerator, wifi, bathUb, balcony, restaurant, swimmingPool, fitnessCenter;
-    EditText roomName, price, address, size;
     Context mContext;
+    ArrayAdapter adapterCity, adapterBedType;
     Spinner city, bedType;
+    EditText roomName, roomAddress, roomPrice, roomSize;
+    Button create, cancel;
+    CheckBox ac, refrigerator, wifi, bathUb, balcony, restaurant, swimmingPool, fitnessCenter;
     private ArrayList<Facility> facilityList =  new ArrayList<>();
     City cityData;
     BedType bedTypeData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,12 @@ public class CreateRoom extends AppCompatActivity {
         bedType = findViewById(R.id.spinnerBedType);
 
         roomName = findViewById(R.id.NameCreateRoom);
-        address = findViewById(R.id.addCreateRoom);
-        price = findViewById(R.id.priceCreateRoom);
-        size = findViewById(R.id.sizeCreateRoom);
+        roomAddress = findViewById(R.id.addCreateRoom);
+        roomPrice = findViewById(R.id.priceCreateRoom);
+        roomSize = findViewById(R.id.sizeCreateRoom);
 
-        ButtonCreate = findViewById(R.id.createButton);
-        ButtonCancel = findViewById(R.id.cancelButton);
+        create = findViewById(R.id.createButton);
+        cancel = findViewById(R.id.cancelButton);
 
         ac = findViewById(R.id.AC_Facility);
         refrigerator = findViewById(R.id.Refrigator_Fac);
@@ -76,7 +77,7 @@ public class CreateRoom extends AppCompatActivity {
         adapterBedType.setDropDownViewResource(R.layout.dropdown_item);
         bedType.setAdapter(adapterBedType);
 
-        ButtonCreate.setOnClickListener(new View.OnClickListener() {
+        create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("click");
@@ -96,13 +97,24 @@ public class CreateRoom extends AppCompatActivity {
                     facilityList.add(Facility.SwimmingPool);
                 if (fitnessCenter.isChecked())
                     facilityList.add(Facility.FitnessCenter);
-                Room createRoom = createRoom();
+                String bed = bedSpin.getSelectedItem().toString();
+                String cityStr = citySpin.getSelectedItem().toString();
+                bedType = BedType.valueOf(bed);
+                city = City.valueOf(cityStr);
+
+                Integer priceObj = new Integer(roomPrice.getText().toString());
+                Integer sizeObj = new Integer(roomSize.getText().toString());
+
+                int priceInt = priceObj.parseInt(roomPrice.getText().toString());
+                int sizeInt = sizeObj.parseInt(roomSize.getText().toString());
+                //price.price = priceInt;
+                Room room = requestRoom(MainActivity.savedAccount.id, roomName.getText().toString(), sizeInt, priceInt, facility, city, roomAddress.getText().toString(), bedType);
             }
         });
-
-        ButtonCancel.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("Cancelled create room");
                 Toast.makeText(mContext, "Cancelled!", Toast.LENGTH_SHORT).show();
                 Intent move = new Intent(CreateRoom.this, MainActivity.class);
                 startActivity(move);
@@ -114,21 +126,22 @@ public class CreateRoom extends AppCompatActivity {
         mApiService.createRoomRequest(
                 MainActivity.accountLogin.id,
                 roomName.getText().toString(),
-                Integer.parseInt(size.getText().toString()),
-                Double.parseDouble(price.getText().toString()),
+                Integer.parseInt(roomSize.getText().toString()),
+                Double.parseDouble(roomPrice.getText().toString()),
                 facilityList,
                 City.valueOf(city.getSelectedItem().toString()),
-                address.getText().toString(),
+                roomAddress.getText().toString(),
                 BedType.valueOf(bedType.getSelectedItem().toString())
         ).enqueue(new Callback<Room>() {
             @Override
             public void onResponse(Call<Room> call, Response<Room> response) {
                 if(response.isSuccessful()){
-                    if(response.isSuccessful()){
-                        Toast.makeText(mContext, "Create Room Successful!", Toast.LENGTH_SHORT).show();
-                        Intent move = new Intent(CreateRoom.this, MainActivity.class);
-                        startActivity(move);
-                    }
+                    System.out.println("Response Success");
+                    Toast.makeText(mContext, "Create Room Successful!", Toast.LENGTH_SHORT).show();
+                    Intent move = new Intent(CreateRoom.this, MainActivity.class);
+                    startActivity(move);
+                } else{
+                    System.out.println("Respond not success");
                 }
             }
 

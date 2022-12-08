@@ -23,9 +23,9 @@ import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
 public class About_Me extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
-    Button ButtonConfirm, ButtonCancel, ButtonRegisterRen;
+    Button ButtonConfirm, ButtonCancel, ButtonRegisterRen, ButtonTopUp;
     CardView CardRenterReg, CardRegister, CardDetailed;
-    TextView NameRent, AddRent, PhoneRent, name, email, balance;
+    TextView NameRent, AddRent, PhoneRent, name, email, balance, RenterName, RenterAdd, RenterPhone;
     EditText InpName, InpAdd, InpPhone, topUpBalance;
     LinearLayout renterButtonLayout, registerLayout, dataLayout;
 
@@ -43,9 +43,8 @@ public class About_Me extends AppCompatActivity {
         name = findViewById(R.id.inputNameAboutMe);
         email = findViewById(R.id.inputEmailAboutMe);
         balance = findViewById(R.id.inputBalanceAboutMe);
-        NameRent = findViewById(R.id.inputName_2);
-        AddRent = findViewById(R.id.inputAddress_2);
-        PhoneRent = findViewById(R.id.inputPhone_2);
+        topUpBalance = findViewById(R.id.inputTopUpAboutMe);
+        ButtonTopUp = findViewById(R.id.buttonTopUpAboutMe);
         if(balance == null){
             balance.setText("0");
         }
@@ -54,7 +53,6 @@ public class About_Me extends AppCompatActivity {
         name.setText(MainActivity.accountLogin.name);
         email.setText(MainActivity.accountLogin.email);
         balance.setText(String.valueOf(MainActivity.accountLogin.balance));
-
 
         //For register Button
         ButtonRegisterRen = findViewById(R.id.registerRenter_Button);
@@ -70,9 +68,9 @@ public class About_Me extends AppCompatActivity {
 
         //For Detailed Register
         CardDetailed = findViewById(R.id.card_view_info_AboutMe);
-        NameRent = findViewById(R.id.NameInfo_3);
-        AddRent = findViewById(R.id.AddressInfo_3);
-        PhoneRent = findViewById(R.id.PhoneInfo_3);
+        NameRent = findViewById(R.id.Renter_Name);
+        AddRent = findViewById(R.id.Renter_Address);
+        PhoneRent = findViewById(R.id.Renter_Phone);
 
         //Jika belum memiliki renter maka fitur yang dapat digunakan adalah menambah renter
         if(MainActivity.accountLogin.renter == null){
@@ -88,16 +86,16 @@ public class About_Me extends AppCompatActivity {
                     //Yang menjadi visible adalah card input renter
                     CardRegister.setVisibility(CardView.GONE);
                     CardRenterReg.setVisibility(CardView.VISIBLE);
-//                    CardDetailed.setVisibility(CardView.GONE);
+                    CardDetailed.setVisibility(CardView.GONE);
 
                     //Jika button confirm di klik maka akan kembali ke class about me
                     ButtonConfirm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Renter renter = requestRenter(MainActivity.accountLogin.id, InpName.getText().toString(), InpAdd.getText().toString(), InpPhone.getText().toString());
-                            Intent move = new Intent(About_Me.this,About_Me.class);
+                            Renter renter = requestRenter(MainActivity.accountLogin.id, InpName.getText().toString(),
+                                    InpAdd.getText().toString(), InpPhone.getText().toString());
+                            Intent move = new Intent(About_Me.this, About_Me.class);
                             startActivity(move);
-
                         }
                     });
 
@@ -106,7 +104,7 @@ public class About_Me extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             CardRenterReg.setVisibility(CardView.GONE);
-//                            CardDetailed.setVisibility(CardView.GONE);
+                            CardDetailed.setVisibility(CardView.GONE);
                             CardRegister.setVisibility(CardView.VISIBLE);
                         }
                     });
@@ -127,6 +125,10 @@ public class About_Me extends AppCompatActivity {
 
     //Method untuk melakukan renter ketika ingin baru membuar renter
     protected Renter requestRenter(int id, String username, String address, String phone){
+        System.out.println(id);
+        System.out.println(username);
+        System.out.println(address);
+        System.out.println(phone);
         mApiService.registerRenter(id, username, address, phone).enqueue(new Callback<Renter>() {
             @Override
             public void onResponse(Call<Renter> call, Response<Renter> response) {
@@ -142,6 +144,7 @@ public class About_Me extends AppCompatActivity {
             @Override
             public void onFailure(Call<Renter> call, Throwable t) {
                 Toast.makeText(mContext, "Failed to register renter", Toast.LENGTH_SHORT).show();
+                System.out.println("Failed on Response");
             }
         });
         return null;

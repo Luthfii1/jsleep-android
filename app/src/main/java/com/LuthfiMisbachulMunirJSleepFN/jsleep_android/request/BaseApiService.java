@@ -24,7 +24,7 @@ public interface BaseApiService {
     @POST("account/login")
     Call<Account> login (@Query("email") String mail, @Query("password") String Password);
 
-    @POST("/account/{id}/topUp")
+    @POST("account/{id}/topUp")
     Call<Boolean> topUpRequest (
             @Path("id") int id,
             @Query("balance") double balance
@@ -36,13 +36,13 @@ public interface BaseApiService {
     @GET("renter/getAllRoom")
     Call<List<Room>> getAllRoom (@Query("page") int page, @Query("pageSize") int pageSize);
 
-    @POST("/{id}/registerRenter")
+    @POST("account/{id}/registerRenter")
     Call<Renter> registerRenter(@Path("id") int id,
                                       @Query("username") String username,
                                       @Query("address") String address,
                                       @Query("phoneNumber") String phoneNumber);
 
-    @POST("/room/create")
+    @POST("room/create")
     Call<Room> createRoomRequest (
             @Query("accountId") int accountId,
             @Query("name") String name,
@@ -54,7 +54,7 @@ public interface BaseApiService {
             @Query("bedType")BedType bedType
     );
 
-    @POST("/payment/create")
+    @POST("payment/create")
     Call<Payment> createBookingRequest (
             @Query("buyerId") int buyerId,
             @Query("renterId") int renterId,
@@ -63,9 +63,9 @@ public interface BaseApiService {
             @Query("to") String to
     );
 
-    @POST("/payment/{id}/cancel")
+    @POST("payment/{id}/cancel")
     Call<Boolean> cancelPaymentRequest (@Path("id") int id);
 
-    @POST("/payment/{id}/accept")
+    @POST("payment/{id}/accept")
     Call<Boolean> acceptPaymentRequest (@Path("id") int id);
 }
