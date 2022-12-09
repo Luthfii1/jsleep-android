@@ -40,9 +40,9 @@ public class About_Me extends AppCompatActivity {
         mContext = this;
 
         //Var for information Account
-        name = findViewById(R.id.inputNameAboutMe);
-        email = findViewById(R.id.inputEmailAboutMe);
-        balance = findViewById(R.id.inputBalanceAboutMe);
+        name = findViewById(R.id.dataNameAboutMe);
+        email = findViewById(R.id.dataEmailAboutMe);
+        balance = findViewById(R.id.dataAmountAboutMe);
         topUpBalance = findViewById(R.id.inputTopUpAboutMe);
         ButtonTopUp = findViewById(R.id.buttonTopUpAboutMe);
         if(balance == null){
@@ -117,9 +117,9 @@ public class About_Me extends AppCompatActivity {
             CardRegister.setVisibility(CardView.GONE);
             CardRenterReg.setVisibility(CardView.GONE);
 
-            InpName.setText(MainActivity.accountLogin.renter.username);
-            InpPhone.setText(MainActivity.accountLogin.renter.address);
-            InpAdd.setText(MainActivity.accountLogin.renter.phoneNumber);
+            NameRent.setText(MainActivity.accountLogin.renter.username);
+            PhoneRent.setText(MainActivity.accountLogin.renter.address);
+            AddRent.setText(MainActivity.accountLogin.renter.phoneNumber);
         }
     }
 

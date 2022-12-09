@@ -1,6 +1,5 @@
 package com.LuthfiMisbachulMunirJSleepFN.jsleep_android;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,29 +10,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.BaseApiService;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -115,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(move);
                 return true;
             case R.id.add_button:
-                Intent move2 = new Intent(MainActivity.this, CreateRoom.class);
+                Intent move2 = new Intent(MainActivity.this, CreateRoomActivity.class);
                 startActivity(move2);
                 return true;
             default:
@@ -166,5 +154,18 @@ public class MainActivity extends AppCompatActivity {
             ret.add(list.get(i).name);
         }
         return ret;
+    }
+
+    public void onItemClick (AdapterView<?> l, View v, int position, long id){
+        System.out.println("onItemClick Success");
+        Log.i("ListView", "You clicked Item np : " + id + " at position:" + position);
+        // Then you start a new Activity via Intent
+        Intent intent = new Intent(this, DetailRoomActivity.class);
+        numPage = position;
+        System.out.println("clicked");
+        intent.setClass(mContext, DetailRoomActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }

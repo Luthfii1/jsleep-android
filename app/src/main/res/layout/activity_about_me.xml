@@ -5,327 +5,408 @@
     android:id="@+id/aboutMePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_bg"
     tools:context=".About_Me">
-    
-    <TextView
-        android:id="@+id/textView"
+
+    <LinearLayout
+        android:id="@+id/header_aboutme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account Details"
-        android:textColor="#7D8F69"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="-50dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/inputEmailAboutMe"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_header_aboutme" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/titleAboutMe"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:text="luthfi32@gmail.com"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNameAboutMe"
-        app:layout_constraintVertical_bias="0.0" />
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/inputNameAboutMe"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:foregroundGravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/title_aboutme" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dataAboutMe"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:text="Luthfi"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/titleAboutMe">
 
-    <TextView
-        android:id="@+id/inputBalanceAboutMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="31dp"
-        android:inputType="number"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:text="0.0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.17" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            >
+            <TextView
+                android:id="@+id/nameAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="Name"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/inputNameAboutMe2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="31dp"
-        android:text="Name"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.001" />
+            <TextView
+                android:id="@+id/dataNameAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_gravity="center_vertical"
+                android:text="Luthfi"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/inputNameAboutMe3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="103dp"
-        android:text="Email"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.086" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="20dp"
+            >
+            <TextView
+                android:id="@+id/emailAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="Email"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/inputNameAboutMe4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="103dp"
-        android:text="Balance"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.17" />
+            <TextView
+                android:id="@+id/dataEmailAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_gravity="center_vertical"
+                android:text="luthfi5@gmail.com"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/inputTopUpAboutMe"
-        android:layout_width="146dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="366dp"
-        android:ems="10"
-        android:hint="Amount"
-        android:inputType="number|numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNameAboutMe4"
-        app:layout_constraintVertical_bias="0.657" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="20dp"
+            >
+            <TextView
+                android:id="@+id/amountAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:layout_gravity="center_vertical"
+                android:text="Amount"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
-        android:id="@+id/buttonTopUpAboutMe"
-        android:layout_width="123dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="71dp"
-        android:layout_marginBottom="373dp"
-        android:backgroundTint="#7D8F69"
-        android:text="Top Up"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/inputTopUpAboutMe"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmailAboutMe"
-        app:layout_constraintVertical_bias="0.821" />
+            <TextView
+                android:id="@+id/dataAmountAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="0.0"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/inputTopUpAboutMe"
+                android:layout_width="146dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:layout_weight="1"
+                android:textColorLink="@color/blue_light"
+                android:layout_gravity="center_vertical"
+                android:hint="Amount"
+                android:textColorHint="@color/white"
+                android:inputType="number|numberDecimal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputNameAboutMe4"/>
+
+            <Button
+                android:id="@+id/buttonTopUpAboutMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                android:text="Top Up"
+                android:textColor="@color/blue_dark"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/blue_light" />
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_register"
-        android:layout_width="411dp"
-        android:layout_height="359dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="1dp"
+        android:background="@color/dark_bg"
+        android:backgroundTint="@color/dark_bg"
         android:visibility="invisible"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTopUpAboutMe">
+        app:layout_constraintTop_toBottomOf="@+id/dataAboutMe">
 
         <Button
             android:id="@+id/registerRenter_Button"
-            android:layout_width="202dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="70dp"
-            android:backgroundTint="#7D8F69"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_radius"
+            android:gravity="center_horizontal"
             android:text="Register Renter"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/address_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="80dp"
-            android:text="Address"
-            android:textSize="18dp" />
-
+            android:textColor="@color/blue_dark"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue_light" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_input_register"
-        android:layout_width="411dp"
-        android:layout_height="359dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="1dp"
+        android:background="@color/blue_dark"
+        android:backgroundTint="@color/cloud_dark"
         android:visibility="invisible"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTopUpAboutMe">
+        app:layout_constraintTop_toBottomOf="@+id/dataAboutMe">
 
-        <EditText
-            android:id="@+id/inputName_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/inputAddress_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="60dp"
-            android:ems="10"
-            android:hint="Address"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/inputPhone_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="120dp"
-            android:ems="10"
-            android:hint="Phone Number"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
-
-        <Button
-            android:id="@+id/registerButton_2"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="180dp"
-            android:backgroundTint="#7D8F69"
-            android:text="Register"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/cancelButton_2"
-            android:layout_width="140dp"
+        <LinearLayout
+            android:id="@+id/inputAccount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="84dp"
-            android:layout_marginTop="180dp"
-            android:backgroundTint="#7D8F69"
-            android:text="Cancel"
-            android:visibility="visible" />
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/inputName_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHighlight="@color/blue_light"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/blue_light" />
+
+            <EditText
+                android:id="@+id/inputAddress_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Address"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHighlight="@color/blue_light"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/blue_light" />
+
+            <EditText
+                android:id="@+id/inputPhone_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Phone Number"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHighlight="@color/blue_light"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/blue_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputAccount">
+
+                <Button
+                    android:id="@+id/registerButton_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_radius"
+                    android:text="Register"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/blue_light" />
+
+                <Button
+                    android:id="@+id/cancelButton_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_radius"
+                    android:text="Cancel"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/blue_light" />
+            </LinearLayout>
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_info_AboutMe"
-        android:layout_width="411dp"
-        android:layout_height="359dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/cloud_dark"
+        android:backgroundTint="@color/cloud_dark"
         android:visibility="visible"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTopUpAboutMe">
+        app:layout_constraintTop_toBottomOf="@+id/dataAboutMe">
 
-
-        <TextView
-            android:id="@+id/name_rent"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="20dp"
-            android:text="Name"
-            android:textSize="18dp"
-            android:visibility="visible" />
+            android:layout_marginEnd="44dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Address_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="80dp"
-            android:text="Address"
-            android:textSize="18dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/Phone_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="140dp"
-            android:text="Phone Number"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/name_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/Renter_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="20dp"
-            android:text="NameHarusnya"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/Renter_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:text="Nama harusnya"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/Renter_Address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="80dp"
-            android:text="AlamatHarusnya"
-            android:textSize="18dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/Renter_Phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="140dp"
-            android:text="Telfonharusnya"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/Address_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Renter_Address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:text="Alamat harusnya"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Phone_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Renter_Phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:text="Phone harusnya"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

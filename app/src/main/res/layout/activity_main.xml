@@ -5,17 +5,70 @@
     android:id="@+id/MainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F7F7"
+    android:background="@color/dark_bg"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_star_yellow" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="410dp"
+        android:layout_marginStart="287dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_star_yellow" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="325dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_star_white" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="267dp"
+        android:layout_marginStart="365dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_star_blue_dark" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="458dp"
+        android:layout_marginStart="76dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_star_blue_dark" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_cloud_top" />
 
     <LinearLayout
         android:id="@+id/buttonPaginate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,38 +78,59 @@
 
         <Button
             android:id="@+id/prevButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#6D9886"
+            android:background="@drawable/button_radius"
             android:text="PREV"
-            android:textColor="#fff" />
+            android:textColor="@color/blue_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue_light"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/nextButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#6D9886"
-            android:text="NEXT"
-            android:textColor="#fff" />
+            android:layout_marginStart="10dp"
+            android:background="@drawable/button_radius"
+            android:text="next"
+            android:textColor="@color/blue_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue_light"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/LetterPaginate"
-            android:layout_width="46dp"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text="1" />
+            android:minHeight="48dp"
+            android:text="1"
+            android:textColor="@color/blue_light"
+            android:textColorHint="@color/blue_light"
+            android:textColorLink="@color/blue_light" />
 
         <Button
             android:id="@+id/goButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#6D9886"
-            android:text="GO" />
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_radius"
+            android:text="GO"
+            android:textColor="@color/blue_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue_light"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
     <ListView
@@ -64,7 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
-        android:backgroundTint="#F2E7D5"
+        android:backgroundTint="@color/blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

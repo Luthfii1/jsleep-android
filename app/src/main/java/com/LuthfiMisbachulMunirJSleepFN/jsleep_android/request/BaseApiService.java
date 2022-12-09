@@ -43,16 +43,14 @@ public interface BaseApiService {
                                       @Query("phoneNumber") String phoneNumber);
 
     @POST("room/create")
-    Call<Room> createRoomRequest (
-            @Query("accountId") int accountId,
-            @Query("name") String name,
-            @Query("size") int size,
-            @Query("price") double price,
-            @Query("facility") ArrayList<Facility> facility,
-            @Query("city") City city,
-            @Query("address") String address,
-            @Query("bedType")BedType bedType
-    );
+    Call<Room> room(@Query("accountId") int accountId,
+                    @Query("name") String name,
+                    @Query("size") int size,
+                    @Query("price") int price,
+                    @Query("facility") ArrayList<Facility> facility,
+                    @Query("city") City city,
+                    @Query("address") String address,
+                    @Query("bedType") BedType bedType);
 
     @POST("payment/create")
     Call<Payment> createBookingRequest (

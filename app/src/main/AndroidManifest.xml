@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Jsleepandroid"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CreateRoom"
+            android:name=".CreateRoomActivity"
             android:exported="false" />
         <activity
             android:name=".PaymentActivity"
