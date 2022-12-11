@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     static List<String> roomName = new ArrayList<>();
     ListView list;
     BaseApiService mApiService;
+    ImageView filter;
     static BaseApiService mApiServiceStatic;
     Context mContext;
     Button next, prev;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         prev = findViewById(R.id.prevButton);
         list = findViewById(R.id.listView_Main);
         list.setOnItemClickListener(this::onItemClick);
-
+        filter = findViewById(R.id.filterButton);
         getRoomList(0);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 roomFix = getRoomList(numPage);
             }
         });
-
+        filter.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchRoomActivity.class);
+            startActivity(intent);
+        });
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

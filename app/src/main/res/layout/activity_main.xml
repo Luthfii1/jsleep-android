@@ -86,6 +86,14 @@
             android:textStyle="bold"
             app:backgroundTint="@color/blue_light"
             app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/filterButton"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_baseline_search_24"></ImageView>
     </LinearLayout>
 
     <LinearLayout
