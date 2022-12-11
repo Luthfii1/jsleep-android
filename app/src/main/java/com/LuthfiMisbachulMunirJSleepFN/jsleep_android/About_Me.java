@@ -20,6 +20,16 @@ import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Renter;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.BaseApiService;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
 
+/**
+ * Created by Luthfi on 11/12/2022.
+ * About_Me.java using for set the about me page
+ * @author Luthfi
+ * there a 3 card view in this page
+ * 1. card view will show if the user doesn't have a renter
+ * 2. card view will show if the user have a renter
+ * 3. card view will show if the user have a renter and the renter have a room
+ */
+
 public class About_Me extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
@@ -29,6 +39,14 @@ public class About_Me extends AppCompatActivity {
     EditText InpName, InpAdd, InpPhone, topUpBalance;
     LinearLayout renterButtonLayout, registerLayout, dataLayout;
 
+    /**
+     * this method will be called when the page is created
+     * @param savedInstanceState
+     * @author Luthfi
+     * @since 11/12/2022
+     * @version 1.0
+     *
+     */
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +70,7 @@ public class About_Me extends AppCompatActivity {
         ButtonTopUp = findViewById(R.id.buttonTopUpAboutMe);
         OrderList = findViewById(R.id.orderList);
         LogOut = findViewById(R.id.logout);
+
 
         if(balance == null){
             balance.setText("0");
@@ -80,6 +99,10 @@ public class About_Me extends AppCompatActivity {
         AddRent = findViewById(R.id.Renter_Address);
         PhoneRent = findViewById(R.id.Renter_Phone);
 
+        /**
+         * this method will be called when the user click the top up button
+         *
+         */
         ButtonTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +110,10 @@ public class About_Me extends AppCompatActivity {
             }
         });
 
+        /**
+         * this method will be called when the user click the log out button
+         * user will be log out from this account and get back to menu login
+         */
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +122,11 @@ public class About_Me extends AppCompatActivity {
                 startActivity(logout);
             }
         });
-        
+
+        /**
+         * this method will be called when the uer click the renter detail
+         * user will see all of the renter from another user to their room
+         */
         OrderList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> nameStr;
     List<Room> roomFix ;
     public static Payment payment;
+    static List<String> roomName = new ArrayList<>();
     ListView list;
     BaseApiService mApiService;
     static BaseApiService mApiServiceStatic;
@@ -73,17 +74,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(numPage<=1){
                     numPage=1;
-                    Toast.makeText(mContext, "Now your on the first page", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "this is the first page", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 numPage--;
                 try {
-                    roomFix = getRoomList(numPage);  //return null
+                    roomFix = getRoomList(numPage-1);  //return null
                     Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }
@@ -114,17 +114,17 @@ public boolean onCreateOptionsMenu(Menu menu) {
         }
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
-        MenuItem register = menu.findItem(R.id.add_button);
-        if(accountLogin.renter == null){
-            register.setVisible(false);
-        }
-        else {
-            register.setVisible(true);
-        }
-        return true;
-    }
+//    public boolean onPrepareOptionsMenu(Menu menu)
+//    {
+//        MenuItem register = menu.findItem(R.id.add_button);
+//        if(accountLogin.renter == null){
+//            register.setVisible(false);
+//        }
+//        else {
+//            register.setVisible(true);
+//        }
+//        return true;
+//    }
 
     protected List<Room> getRoomList(int page) {
         //System.out.println(pageSize);
@@ -134,6 +134,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 if (response.isSuccessful()) {
                     roomTemp = response.body();
                     nameStr = getName(roomTemp);
+                    roomName.addAll(nameStr);
                     System.out.println("name extracted"+roomTemp.toString());
                     ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,nameStr);
                     list = (ListView) findViewById(R.id.listView_Main);

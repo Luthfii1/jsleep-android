@@ -69,11 +69,27 @@ public interface BaseApiService {
                                 @Query("to") String to);
 
     @GET("payment/getOrderForRenter")
-    Call<List<Payment>> getOrderForRenter(@Query("renterId") int renterId,@Query("page") int page,@Query("pageSize") int pageSize);
+    Call<List<Payment>> getOrderForRenter(@Path("id") int id,@Query("page") int page,@Query("pageSize") int pageSize);
+
+
+    @GET("room/{id}")
+    Call<Room> room (@Path("id") int id);
+
+    @GET("payment/getAll/{id}")
+    Call<List<Payment>> getRoomByRenter(@Path("id") int renterId,@Query("page") int page, @Query("pageSize") int pageSize);
 
     @POST("payment/{id}/cancel")
     Call<Boolean> cancelPaymentRequest (@Path("id") int id);
 
     @POST("payment/{id}/accept")
     Call<Boolean> acceptPaymentRequest (@Path("id") int id);
+
+    @GET("room/collectByName")
+    Call<List<Room>> collectByName(@Query("name") String name);
+
+    @GET("room/collectByPrice")
+    Call<List<Room>> collectByPrice(@Query("min") int min,@Query("max") int max);
+
+    @GET("room/filterByCity")
+    Call<List<Room>> collectByCity(@Query("city") City city);
 }
