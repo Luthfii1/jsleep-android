@@ -179,6 +179,20 @@
                 android:textStyle="bold"
                 app:backgroundTint="@color/blue_light" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_radius"
+                app:backgroundTint="@color/cloud_dark"
+                android:textStyle="bold"
+                android:text="LOG OUT"></Button>
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -314,9 +328,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_info_AboutMe"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/cloud_dark"
         android:backgroundTint="@color/cloud_dark"
         android:visibility="visible"
@@ -342,6 +356,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:layout_weight="1"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -350,7 +365,6 @@
                     android:id="@+id/Renter_Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="150dp"
                     android:text="Nama harusnya"
                     android:textColor="@color/white"
                     android:textSize="18dp"
@@ -360,7 +374,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -368,6 +382,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
+                    android:layout_weight="1"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -376,7 +391,6 @@
                     android:id="@+id/Renter_Address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="120dp"
                     android:text="Alamat harusnya"
                     android:textColor="@color/white"
                     android:textSize="18dp"
@@ -386,7 +400,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -394,6 +408,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone Number"
+                    android:layout_weight="1"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -402,11 +417,28 @@
                     android:id="@+id/Renter_Phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
                     android:text="Phone harusnya"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp">
+
+                <Button
+                    android:id="@+id/orderList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_radius"
+                    android:text="Order LIST"
+                    android:textColor="@color/blue_light"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/blue_dark" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

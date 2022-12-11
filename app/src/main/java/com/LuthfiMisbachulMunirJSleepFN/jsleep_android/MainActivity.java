@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     int numPage;
     int page = 1, pageSize = 15;
     protected static Account accountLogin;
+    EditText letter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +58,13 @@ public class MainActivity extends AppCompatActivity {
         list = findViewById(R.id.listView_Main);
         list.setOnItemClickListener(this::onItemClick);
 
-        getRoomList(0,10);
+        getRoomList(0);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(roomTemp.size()>numPage){
-                    numPage=1;
-                    return;
-                }
-                numPage++;
-                try {
-                    //roomFix = getRoomList(numPage-1, 1);
-                    Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                numPage += 1;
+                roomFix = getRoomList(numPage);
             }
         });
 
@@ -85,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 numPage--;
                 try {
-                    //roomFix = getRoomList(numPage-1, 1);  //return null
+                    roomFix = getRoomList(numPage);  //return null
                     Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -112,10 +105,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 Intent move2 = new Intent(MainActivity.this, CreateRoomActivity.class);
                 startActivity(move2);
                 return true;
-//            case R.id.refresh:
-//                Intent move3 = new Intent(MainActivity.this, MainActivity.class);
-//                startActivity(move3);
-//                return true;
+            case R.id.home:
+                Intent move3 = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(move3);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -124,8 +117,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
     public boolean onPrepareOptionsMenu(Menu menu)
     {
         MenuItem register = menu.findItem(R.id.add_button);
-//        MenuItem home = menu.findItem(R.id.home);
-//        home.setVisible(false);
         if(accountLogin.renter == null){
             register.setVisible(false);
         }
@@ -135,9 +126,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
-    protected List<Room> getRoomList(int page, int pageSize) {
+    protected List<Room> getRoomList(int page) {
         //System.out.println(pageSize);
-        mApiService.getAllRoom(page, pageSize).enqueue(new Callback<List<Room>>() {
+        mApiService.getAllRoom(page, 10).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
@@ -155,12 +146,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 t.printStackTrace();
                 Toast.makeText(mContext, "get room failed", Toast.LENGTH_SHORT).show();
             }
-
         });
         return null;
     }
-
-
 
     protected static Account reloadAccount(int id){
         mApiServiceStatic.getAccount(id).enqueue(new Callback<Account>() {
@@ -200,5 +188,4 @@ public boolean onCreateOptionsMenu(Menu menu) {
         intent.putExtra("id", id);
         startActivity(intent);
     }
-
 }

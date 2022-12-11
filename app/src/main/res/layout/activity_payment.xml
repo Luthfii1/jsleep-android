@@ -438,7 +438,7 @@
                         android:id="@+id/acceptPayment"
                         android:background="@drawable/button_radius"
                         app:backgroundTint="@color/cloud_dark"
-                        android:text="Accept"
+                        android:text="Book"
                         android:textColor="@color/blue_light"
                         android:textStyle="bold"
                         android:layout_weight="1"

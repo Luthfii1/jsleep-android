@@ -23,7 +23,7 @@ import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
 public class About_Me extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
-    Button ButtonConfirm, ButtonCancel, ButtonRegisterRen, ButtonTopUp;
+    Button ButtonConfirm, ButtonCancel, ButtonRegisterRen, ButtonTopUp, OrderList, LogOut;
     CardView CardRenterReg, CardRegister, CardDetailed;
     TextView NameRent, AddRent, PhoneRent, name, email, balance, RenterName, RenterAdd, RenterPhone;
     EditText InpName, InpAdd, InpPhone, topUpBalance;
@@ -50,6 +50,9 @@ public class About_Me extends AppCompatActivity {
         balance = findViewById(R.id.dataAmountAboutMe);
         topUpBalance = findViewById(R.id.inputTopUpAboutMe);
         ButtonTopUp = findViewById(R.id.buttonTopUpAboutMe);
+        OrderList = findViewById(R.id.orderList);
+        LogOut = findViewById(R.id.logout);
+
         if(balance == null){
             balance.setText("0");
         }
@@ -81,6 +84,24 @@ public class About_Me extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TopUp(MainActivity.accountLogin.id,Double.parseDouble(topUpBalance.getText().toString()));
+            }
+        });
+
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Log Out From Your Account", Toast.LENGTH_SHORT).show();
+                Intent logout = new Intent(About_Me.this, LoginActivity.class);
+                startActivity(logout);
+            }
+        });
+        
+        OrderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("See Renter Detail");
+                Intent seeOrder = new Intent(About_Me.this, OrderListActivity.class);
+                startActivity(seeOrder);
             }
         });
 
@@ -135,6 +156,8 @@ public class About_Me extends AppCompatActivity {
         }
     }
 
+
+
     //Method untuk melakukan renter ketika ingin baru membuar renter
     protected Renter requestRenter(int id, String username, String address, String phone){
         System.out.println(id);
@@ -161,9 +184,6 @@ public class About_Me extends AppCompatActivity {
         });
         return null;
     }
-
-
-
 
     protected Renter TopUp(int id, double balance){
         mApiService.topUpRequest(id,balance).enqueue(new Callback<Boolean>() {

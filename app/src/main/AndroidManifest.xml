@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Jsleepandroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetailOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChooseDate"
             android:exported="false" />
         <activity
