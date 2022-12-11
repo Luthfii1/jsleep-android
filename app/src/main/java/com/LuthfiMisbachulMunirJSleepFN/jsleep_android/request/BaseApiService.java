@@ -33,7 +33,7 @@ public interface BaseApiService {
     @POST("account/register")
     Call<Account> register (@Query("name") String Name, @Query("email") String Email, @Query("password") String Password);
 
-    @GET("renter/getAllRoom")
+    @GET("room/getAllRoom")
     Call<List<Room>> getAllRoom (@Query("page") int page, @Query("pageSize") int pageSize);
 
     @POST("account/{id}/registerRenter")
@@ -60,6 +60,13 @@ public interface BaseApiService {
             @Query("from") String from,
             @Query("to") String to
     );
+
+    @POST("payment/create")
+    Call<Payment> createPayment(@Query("buyerId") int buyerId,
+                                @Query("renterId") int renterId,
+                                @Query("roomId") int roomId,
+                                @Query("from") String from,
+                                @Query("to") String to);
 
     @POST("payment/{id}/cancel")
     Call<Boolean> cancelPaymentRequest (@Path("id") int id);

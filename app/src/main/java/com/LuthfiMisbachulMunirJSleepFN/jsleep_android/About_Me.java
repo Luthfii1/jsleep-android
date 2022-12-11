@@ -77,6 +77,13 @@ public class About_Me extends AppCompatActivity {
         AddRent = findViewById(R.id.Renter_Address);
         PhoneRent = findViewById(R.id.Renter_Phone);
 
+        ButtonTopUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TopUp(MainActivity.accountLogin.id,Double.parseDouble(topUpBalance.getText().toString()));
+            }
+        });
+
         //Jika belum memiliki renter maka fitur yang dapat digunakan adalah menambah renter
         if(MainActivity.accountLogin.renter == null){
             //Hanya meng-visiblekan button register renter
@@ -150,6 +157,28 @@ public class About_Me extends AppCompatActivity {
             public void onFailure(Call<Renter> call, Throwable t) {
                 Toast.makeText(mContext, "Failed to register renter", Toast.LENGTH_SHORT).show();
                 System.out.println("Failed on Response");
+            }
+        });
+        return null;
+    }
+
+
+
+
+    protected Renter TopUp(int id, double balance){
+        mApiService.topUpRequest(id,balance).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(mContext, "Top Up Success", Toast.LENGTH_SHORT).show();
+                    MainActivity.accountLogin.balance = MainActivity.accountLogin.balance + balance;
+                    recreate();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(mContext, "Top Up Fail", Toast.LENGTH_SHORT).show();
             }
         });
         return null;

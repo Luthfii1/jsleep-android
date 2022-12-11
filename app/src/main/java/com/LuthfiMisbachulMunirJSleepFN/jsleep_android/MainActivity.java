@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Payment;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.BaseApiService;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
@@ -30,15 +31,18 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     String name;
-    static ArrayList<Room> roomList = new ArrayList<Room>();
-    List<String> stringName;
+    public static List<Room> getRoom;
     List<Room> roomTemp ;
+    List<String> nameStr;
     List<Room> roomFix ;
+    public static Payment payment;
     ListView list;
     BaseApiService mApiService;
+    static BaseApiService mApiServiceStatic;
     Context mContext;
     Button next, prev;
     int numPage;
+    int page = 1, pageSize = 15;
     protected static Account accountLogin;
 
     @Override
@@ -50,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         next = findViewById(R.id.nextButton);
         prev = findViewById(R.id.prevButton);
         list = findViewById(R.id.listView_Main);
-        roomFix = getRoomList(10,10);
+        list.setOnItemClickListener(this::onItemClick);
+
+        getRoomList(0,10);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 numPage++;
                 try {
-                    roomFix = getRoomList(numPage-1, 1);
+                    //roomFix = getRoomList(numPage-1, 1);
                     Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 numPage--;
                 try {
-                    roomFix = getRoomList(numPage-1, 1);  //return null
+                    //roomFix = getRoomList(numPage-1, 1);  //return null
                     Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -89,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_menu, menu);
-        return true;
-    }
-
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.top_menu, menu);
+    return true;
+}
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
         switch (item.getItemId()) {
             case R.id.person_button:
                 Intent move = new Intent(MainActivity.this, About_Me.class);
@@ -106,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent move2 = new Intent(MainActivity.this, CreateRoomActivity.class);
                 startActivity(move2);
                 return true;
+//            case R.id.refresh:
+//                Intent move3 = new Intent(MainActivity.this, MainActivity.class);
+//                startActivity(move3);
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -114,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu)
     {
         MenuItem register = menu.findItem(R.id.add_button);
+//        MenuItem home = menu.findItem(R.id.home);
+//        home.setVisible(false);
         if(accountLogin.renter == null){
             register.setVisible(false);
         }
@@ -124,25 +136,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected List<Room> getRoomList(int page, int pageSize) {
+        //System.out.println(pageSize);
         mApiService.getAllRoom(page, pageSize).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
                     roomTemp = response.body();
-                    stringName = getName(roomTemp);
-                    System.out.println("name extracted "+roomTemp.toString());
-                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,stringName);
-                    ListView listView = (ListView) findViewById(R.id.listView_Main);
-                    listView.setAdapter(itemAdapter);
-                    Toast.makeText(mContext, "Success to get a room", Toast.LENGTH_SHORT).show();
+                    nameStr = getName(roomTemp);
+                    System.out.println("name extracted"+roomTemp.toString());
+                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,nameStr);
+                    list = (ListView) findViewById(R.id.listView_Main);
+                    list.setAdapter(itemAdapter);
+                    Toast.makeText(mContext, "getRoom success", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<List<Room>> call, Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(mContext, "Failed to get a room", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "get room failed", Toast.LENGTH_SHORT).show();
             }
 
+        });
+        return null;
+    }
+
+
+
+    protected static Account reloadAccount(int id){
+        mApiServiceStatic.getAccount(id).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()) {
+                    MainActivity.accountLogin = response.body();
+                    //Toast.makeText(mContext, "getAccount success", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                t.printStackTrace();
+                //Toast.makeText(mContext, "get account failed", Toast.LENGTH_SHORT).show();
+            }
         });
         return null;
     }
@@ -156,16 +189,16 @@ public class MainActivity extends AppCompatActivity {
         return ret;
     }
 
-    public void onItemClick (AdapterView<?> l, View v, int position, long id){
-        System.out.println("onItemClick Success");
-        Log.i("ListView", "You clicked Item np : " + id + " at position:" + position);
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+        Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position);
         // Then you start a new Activity via Intent
-        Intent intent = new Intent(this, DetailRoomActivity.class);
-        numPage = position;
-        System.out.println("clicked");
-        intent.setClass(mContext, DetailRoomActivity.class);
+        Intent intent = new Intent();
+        intent.setClass(this, DetailRoomActivity.class);
+        DetailRoomActivity.tempRoom = roomTemp.get(position);
         intent.putExtra("position", position);
+        // Or / And
         intent.putExtra("id", id);
         startActivity(intent);
     }
+
 }

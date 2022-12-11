@@ -158,6 +158,7 @@
                 android:layout_width="146dp"
                 android:layout_height="48dp"
                 android:ems="10"
+                android:textColor="@color/white"
                 android:layout_weight="1"
                 android:textColorLink="@color/blue_light"
                 android:layout_gravity="center_vertical"
