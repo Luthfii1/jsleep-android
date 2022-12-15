@@ -35,6 +35,8 @@ public class HistoryActivity extends AppCompatActivity {
         BookedBtn = findViewById(R.id.bookedButton);
         lvBooked = findViewById(R.id.listView_Booked);
         lvProgress = findViewById(R.id.listView_Progres);
+        progressLayout = findViewById(R.id.listProgress);
+        bookedLayout = findViewById(R.id.listBooked);
 
         progressLayout.setVisibility(View.VISIBLE);
         bookedLayout.setVisibility(View.GONE);
