@@ -26,6 +26,7 @@
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_create_room.xml" value="0.2" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_detail_order.xml" value="0.2" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_detail_room.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_history.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_order_list.xml" value="0.2" />
@@ -34,7 +35,9 @@
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/activity_search_room.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/choosedate.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/dropdown_item.xml" value="0.17604166666666668" />
+        <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/list_item.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/selected_item.xml" value="0.17604166666666668" />
+        <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/layout/spinner_item.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/menu/top_menu.xml" value="0.4" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/mipmap-anydpi-v26/Vector_atas_Register.xml" value="0.1845" />
         <entry key="..\:/Users/luthf/Documents/Luthfi/Kuliah UI/Semesteran/Semester 3/PBO/Praktikum/Android Studio/app/src/main/res/mipmap-anydpi-v26/cloud_top.xml" value="0.124" />

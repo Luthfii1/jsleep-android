@@ -21,8 +21,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
+    /**
+     * A {@link BaseApiService} instance for making API requests.
+     */
     BaseApiService mApiService;
+    /**
+     * The {@link EditText} where the user can enter their desired name, email and password to make a new account.
+     */
     EditText username, email, password;
+    /**
+     * The {@link Context} of the activity.
+     */
     Context mContext;
 
     @Override
@@ -32,10 +41,12 @@ public class RegisterActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mApiService = UtilsApi.getApiService();
         mContext = this;
+
         Button register = findViewById(R.id.ButtonRegister);
         username = findViewById(R.id.NameRegister);
         email = findViewById(R.id.EmailRegister);
@@ -48,6 +59,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This function is used to request register to the server
+     *
+     * @return Account object
+     * @see Account
+     */
     protected Account requestRegister(){
         mApiService.register(username.getText().toString() ,email.getText().toString(), password.getText().toString()).enqueue(new Callback<Account>() {
             @Override
@@ -64,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<Account> call, Throwable t) {
                 System.out.println(t.toString());
                 System.out.println("Failed");
-                Toast.makeText(mContext, "Register Called", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Register Failed, Please Create a 8 length password", Toast.LENGTH_SHORT).show();
             }
         });
         return null;

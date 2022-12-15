@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Payment;
@@ -29,13 +30,15 @@ public class OrderListActivity extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
     static BaseApiService mApiServiceStatic;
-    List<String> nameStr;
+    List idRoomBuyer = new ArrayList();
     List<Payment> temp ;
+    public static List idRoom = new ArrayList<>();
     List<Payment> acc ;
     ListView lv;
-    Button back, next, prev;
+    Button next, prev;
     public static Room tempRoom = null;
     int currentPage;
+    TextView letter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,54 +50,32 @@ public class OrderListActivity extends AppCompatActivity {
         mContext=this;
         lv = findViewById(R.id.listView_Order);
         next = findViewById(R.id.nextBtnOrder);
+        letter = findViewById(R.id.letterOrder);
         prev = findViewById(R.id.prevOrder);
-//        back = findViewById(id.backButton);
         lv.setOnItemClickListener(this::onItemClick);
         System.out.println("gap sblm acc");
         currentPage = 0;
-        acc = getPaymentList(MainActivity.accountLogin.id, 0, 10);
+        acc = getPaymentList(PaymentActivity.payment.renterId, 0, 10);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (temp.size() > currentPage) {
-                    currentPage++;
-                    try {
-                        acc = getPaymentList(MainActivity.accountLogin.id, currentPage-1, 10);  //return null
-                        Toast.makeText(mContext, "Page "+currentPage, Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(mContext, "Page "+currentPage, Toast.LENGTH_SHORT).show();
-                }
+                currentPage += 1;
+//                acc = getPaymentList(PaymentActivity.payment.renterId, currentPage, 10);
             }
         });
 
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentPage<=1){
-                    currentPage=1;
-                    Toast.makeText(mContext, "this is the first page", Toast.LENGTH_SHORT).show();
-                }
-                currentPage--;
-                try {
-                    acc = getPaymentList(MainActivity.accountLogin.id, currentPage-1, 10);  //return null
-                    Toast.makeText(mContext, "page "+currentPage, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (currentPage == 0) {
+                    Toast.makeText(mContext, "You are at the first page", Toast.LENGTH_SHORT).show();
+                } else {
+                    currentPage -= 1;
+//                    acc = getPaymentList(PaymentActivity.payment.renterId, currentPage, 10);
+                    Toast.makeText(mContext, "Page " + currentPage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(mContext, About_Me.class);
-//                startActivity(intent);
-//            }
-//        });
 
     }
     /**
@@ -124,20 +105,20 @@ public class OrderListActivity extends AppCompatActivity {
      @return a list of payments
      */
     protected List<Payment> getPaymentList(int accId, int page, int pageSize){
-        mApiService.getRoomByRenter(accId,page, pageSize).enqueue(new Callback<List<Payment>>() {
+        mApiService.getOrderForRenter(accId,page, pageSize).enqueue(new Callback<List<Payment>>() {
             @Override
             public void onResponse(Call<List<Payment>> call, Response<List<Payment>> response) {
                 if (response.isSuccessful()) {
                     temp = response.body();
-                    nameStr = getName(temp);
+                    idRoomBuyer = getName(temp);
+                    idRoom.addAll(idRoomBuyer);
                     System.out.println("name extracted"+temp.toString());
-                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,nameStr);
-                    System.out.println("gap1");
+                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, R.layout.list_item, R.id.text_view,idRoomBuyer);
                     lv = (ListView) findViewById(R.id.listView_Order);
-                    System.out.println("listview"+lv.toString());
                     lv.setAdapter(itemAdapter);
                     System.out.println("display lv");
                     Toast.makeText(mContext, "getRoom success", Toast.LENGTH_SHORT).show();
+                    letter.setText(String.valueOf(currentPage+1));
                 }
             }
             @Override
@@ -148,29 +129,28 @@ public class OrderListActivity extends AppCompatActivity {
 
 
         });
-
         return null;
     }
 
-    protected static  Room loadRoom(int id){
-        Room test;
-        mApiServiceStatic.room(id).enqueue(new Callback<Room>() {
-            @Override
-            public void onResponse(Call<Room> call, Response<Room> response) {
-                if (response.isSuccessful()) {
-                    tempRoom = response.body();
-                    System.out.println("Room loaded");
-                    //Toast.makeText(mContext, "getAccount success", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Room> call, Throwable t) {
-                t.printStackTrace();
-                //Toast.makeText(mContext, "get account failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return tempRoom;
-    }
+//    protected static  Room loadRoom(int id){
+//        Room test;
+//        mApiServiceStatic.room(id).enqueue(new Callback<Room>() {
+//            @Override
+//            public void onResponse(Call<Room> call, Response<Room> response) {
+//                if (response.isSuccessful()) {
+//                    tempRoom = response.body();
+//                    System.out.println("Room loaded");
+//                    //Toast.makeText(mContext, "getAccount success", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<Room> call, Throwable t) {
+//                t.printStackTrace();
+//                //Toast.makeText(mContext, "get account failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        return tempRoom;
+//    }
 
     /**
      Retrieves a list of names from a list of payments.
@@ -180,10 +160,9 @@ public class OrderListActivity extends AppCompatActivity {
     public List<String> getName(List<Payment> list) {
         ArrayList<String> ret = new ArrayList<String>();
         int i;
-        String fromDate, toDate;
 
         for (i = 0; i < list.size(); i++) {
-            ret.add(MainActivity.roomName.get(list.get(i).roomId));
+            ret.add("Buyer " + list.get(i).roomId);
         }
 
         return ret;

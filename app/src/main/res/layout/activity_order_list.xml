@@ -85,8 +85,8 @@
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"></Button>
-        <EditText
-            android:id="@+id/letterPage"
+        <TextView
+            android:id="@+id/letterOrder"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

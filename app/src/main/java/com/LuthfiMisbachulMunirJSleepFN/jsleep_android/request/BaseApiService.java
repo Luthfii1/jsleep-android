@@ -71,12 +71,8 @@ public interface BaseApiService {
     @GET("payment/getOrderForRenter")
     Call<List<Payment>> getOrderForRenter(@Path("id") int id,@Query("page") int page,@Query("pageSize") int pageSize);
 
-
     @GET("room/{id}")
     Call<Room> room (@Path("id") int id);
-
-    @GET("payment/getAll/{id}")
-    Call<List<Payment>> getRoomByRenter(@Path("id") int renterId,@Query("page") int page, @Query("pageSize") int pageSize);
 
     @POST("payment/{id}/cancel")
     Call<Boolean> cancelPaymentRequest (@Path("id") int id);

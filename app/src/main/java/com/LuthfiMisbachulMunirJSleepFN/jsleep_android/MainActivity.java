@@ -1,9 +1,11 @@
 package com.LuthfiMisbachulMunirJSleepFN.jsleep_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,10 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Account;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Payment;
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Renter;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.BaseApiService;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.request.UtilsApi;
@@ -31,37 +35,58 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The MainActivity class is an Android activity that represents the main page for the app.
+ *
+ * <p>It displays a list of rooms that are available for rent, and allows the user to navigate to different pages of the list
+ * or to view the details of a selected room. It also provides options for viewing the user's profile and creating a new room.</p>
+ * @author Luthfi Misbachul Munir
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
-    String name;
-    public static List<Room> getRoom;
+    protected static Account accountLogin;
+    /**
+     * The user's renter information.
+     */
+    public static Renter renter;
+    BaseApiService mApiService;
+    Context mContext;
+    Button next, prev, history;
+    ListView list;
     List<Room> roomTemp ;
+    public static List<String> roomName = new ArrayList<>();
+    int numPage;
+    TextView letter;
+    ImageView filter;
+
     List<String> nameStr;
     List<Room> roomFix ;
-    public static Payment payment;
-    static List<String> roomName = new ArrayList<>();
-    ListView list;
-    BaseApiService mApiService;
-    ImageView filter;
+
     static BaseApiService mApiServiceStatic;
-    Context mContext;
-    Button next, prev;
-    int numPage;
     int page = 1, pageSize = 15;
-    protected static Account accountLogin;
-    EditText letter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mApiService = UtilsApi.getApiService();
         mContext = this;
         next = findViewById(R.id.nextButton);
         prev = findViewById(R.id.prevButton);
+        letter = findViewById(R.id.LetterPaginate);
+        history = findViewById(R.id.historyButton);
+
         list = findViewById(R.id.listView_Main);
         list.setOnItemClickListener(this::onItemClick);
+
         filter = findViewById(R.id.filterButton);
         getRoomList(0);
+
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,36 +95,40 @@ public class MainActivity extends AppCompatActivity {
                 roomFix = getRoomList(numPage);
             }
         });
-        filter.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SearchRoomActivity.class);
-            startActivity(intent);
+
+        /**
+         * button to search a filter
+         */
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchRoomActivity.class);
+                startActivity(intent);
+            }
         });
+
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(numPage<=1){
-                    numPage=1;
-                    Toast.makeText(mContext, "this is the first page", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                numPage--;
-                try {
-                    roomFix = getRoomList(numPage-1);  //return null
-                    Toast.makeText(mContext, "page "+numPage, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (numPage == 0) {
+                    Toast.makeText(mContext, "You are at the first page", Toast.LENGTH_SHORT).show();
+                } else {
+                    numPage -= 1;
+                    roomFix = getRoomList(numPage);
+                    Toast.makeText(mContext, "Page " + numPage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.top_menu, menu);
-    return true;
-}
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.person_button:
@@ -119,20 +148,19 @@ public boolean onCreateOptionsMenu(Menu menu) {
         }
     }
 
-//    public boolean onPrepareOptionsMenu(Menu menu)
-//    {
-//        MenuItem register = menu.findItem(R.id.add_button);
-//        if(accountLogin.renter == null){
-//            register.setVisible(false);
-//        }
-//        else {
-//            register.setVisible(true);
-//        }
-//        return true;
-//    }
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem register = menu.findItem(R.id.add_button);
+        if(accountLogin.renter == null){
+            register.setVisible(false);
+        }
+        else {
+            register.setVisible(true);
+        }
+        return true;
+    }
 
     protected List<Room> getRoomList(int page) {
-        //System.out.println(pageSize);
         mApiService.getAllRoom(page, 10).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
@@ -141,34 +169,17 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     nameStr = getName(roomTemp);
                     roomName.addAll(nameStr);
                     System.out.println("name extracted"+roomTemp.toString());
-                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,nameStr);
+                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, R.layout.list_item, R.id.text_view,nameStr);
                     list = (ListView) findViewById(R.id.listView_Main);
                     list.setAdapter(itemAdapter);
                     Toast.makeText(mContext, "getRoom success", Toast.LENGTH_SHORT).show();
+                    letter.setText(String.valueOf(numPage+1));
                 }
             }
             @Override
             public void onFailure(Call<List<Room>> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(mContext, "get room failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return null;
-    }
-
-    protected static Account reloadAccount(int id){
-        mApiServiceStatic.getAccount(id).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                if (response.isSuccessful()) {
-                    MainActivity.accountLogin = response.body();
-                    //Toast.makeText(mContext, "getAccount success", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                t.printStackTrace();
-                //Toast.makeText(mContext, "get account failed", Toast.LENGTH_SHORT).show();
             }
         });
         return null;
@@ -190,7 +201,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
         intent.setClass(this, DetailRoomActivity.class);
         DetailRoomActivity.tempRoom = roomTemp.get(position);
         intent.putExtra("position", position);
-        // Or / And
         intent.putExtra("id", id);
         startActivity(intent);
     }

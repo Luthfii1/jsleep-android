@@ -28,7 +28,7 @@ public class ChooseDate extends AppCompatActivity {
     public static String enddate;
     public static String startdate;
     Button paymentdetail_button;
-    ImageView paymentdetail_image, back;
+    ImageView paymentdetail_image;
     EditText paymentdetail_edittext_start, paymentdetail_edittext_end;
     DatePickerDialog datePickerDialogEnd,datePickerDialogStart;
 
@@ -39,6 +39,7 @@ public class ChooseDate extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_date);
 

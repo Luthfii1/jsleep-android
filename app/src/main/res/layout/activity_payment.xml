@@ -331,33 +331,6 @@
                     android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@id/information_payment"
                     tools:layout_editor_absoluteX="0dp">
-
-                    <LinearLayout
-                        android:id="@+id/PaymentBalanceLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <ImageView
-                            android:id="@+id/PaymentBalanceMoneyImg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_baseline_monetization_on_24" />
-                        <TextView
-                            android:id="@+id/PaymentBalanceInput"
-                            android:layout_width="310dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
-                            android:text="Rp. 100.000.000"
-                            android:textColor="#EFEFEF"
-                            android:textSize="20sp"
-                            tools:layout_editor_absoluteX="56dp"
-                            tools:layout_editor_absoluteY="157dp" />
-                        <ImageView
-                            android:id="@+id/PaymentBalanceDown"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-                    </LinearLayout>
                 </LinearLayout>
 
 

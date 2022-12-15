@@ -33,12 +33,12 @@ import retrofit2.Response;
 public class PaymentActivity extends AppCompatActivity {
 
     BaseApiService mApiService;
-    Payment payment;
+    protected static Payment payment;
     Context mContext;
     Button createbutton, cancelbutton;
     TextView createpayment_from,createpayment_to,createpayment_title_name,
             createpayment_title_address,createpayment_price, balance,
-            bedType_Payment, size_Payment, city_Payment;
+            bedType_Payment, size_Payment, city_Payment, price_Temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,12 @@ public class PaymentActivity extends AppCompatActivity {
             createpayment_title_address = findViewById(R.id.address_detail);
             createpayment_title_name.setText(DetailRoomActivity.tempRoom.name);
             createpayment_title_address.setText(DetailRoomActivity.tempRoom.address);
+            city_Payment = findViewById(R.id.city_Detail);
+            city_Payment.setText(String.valueOf(DetailRoomActivity.tempRoom.city));
+            size_Payment = findViewById(R.id.size_Detail);
+            size_Payment.setText(String.valueOf(DetailRoomActivity.tempRoom.size));
+            price_Temp = findViewById(R.id.price_Detail);
+            price_Temp.setText(String.valueOf(DetailRoomActivity.tempRoom.price));
             createpayment_price = findViewById(R.id.total_Payment);
             bedType_Payment = findViewById(R.id.bedType_detail);
             bedType_Payment.setText(String.valueOf(DetailRoomActivity.tempRoom.bedType));
@@ -123,9 +129,10 @@ public class PaymentActivity extends AppCompatActivity {
                     System.out.println("Success");
                     payment = response.body();
                     System.out.println(payment);
+//                    MainActivity.accountLogin.balance = MainActivity.accountLogin.balance - String.valueOf(createpayment_price.getText().toString());
+                    Toast.makeText(mContext, "Payment created", Toast.LENGTH_SHORT).show();
                     Intent move = new Intent(PaymentActivity.this,MainActivity.class);
                     startActivity(move);
-                    Toast.makeText(mContext, "Payment created", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Jsleepandroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchRoomActivity"
             android:exported="false" />
         <activity

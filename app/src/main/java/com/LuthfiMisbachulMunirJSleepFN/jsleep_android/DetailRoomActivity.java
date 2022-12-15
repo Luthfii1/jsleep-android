@@ -11,12 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.City;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Facility;
 import com.LuthfiMisbachulMunirJSleepFN.jsleep_android.model.Room;
 
 public class DetailRoomActivity extends AppCompatActivity {
-    TextView roomName, roomPrice, roomSize, roomAddress, roomBedtype;
+    TextView roomName, roomPrice, roomSize, roomAddress, roomBedtype, roomCity;
     CheckBox ac, refrig, wifi, bathub, balcony, restaurant, pool, fitness;
     Button order, cancel;
 
@@ -29,6 +31,7 @@ public class DetailRoomActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
 
@@ -49,9 +52,11 @@ public class DetailRoomActivity extends AppCompatActivity {
         restaurant = findViewById(R.id.resto_fac);
         pool = findViewById(R.id.pool_fac);
         fitness = findViewById(R.id.fitness_fac);
+        roomCity = findViewById(R.id.city_Detail);
 
         roomName.setText(tempRoom.name);
         roomPrice.setText(String.valueOf(tempRoom.price.price));
+        roomCity.setText(tempRoom.city.toString());
         roomSize.setText(String.valueOf(tempRoom.size));
         roomAddress.setText(tempRoom.address);
         roomBedtype.setText(tempRoom.bedType.toString());
@@ -59,6 +64,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(DetailRoomActivity.this, "Please select a date", Toast.LENGTH_SHORT).show();
                 Intent move = new Intent(DetailRoomActivity.this, ChooseDate.class);
                 startActivity(move);
             }
@@ -67,6 +73,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(DetailRoomActivity.this, "Failed to book a room", Toast.LENGTH_SHORT).show();
                 Intent move = new Intent(DetailRoomActivity.this, MainActivity.class);
                 startActivity(move);
             }
@@ -91,38 +98,5 @@ public class DetailRoomActivity extends AppCompatActivity {
                 fitness.setChecked(true);
             }
         }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.home:
-                Intent move = new Intent(DetailRoomActivity.this, MainActivity.class);
-                startActivity(move);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
-        MenuItem register = menu.findItem(R.id.add_button);
-//        MenuItem refresh = menu.findItem(R.id.refresh);
-        MenuItem acc = menu.findItem(R.id.person_button);
-        MenuItem box = menu.findItem(R.id.add_button);
-        MenuItem search = menu.findItem(R.id.search_button);
-        search.setVisible(false);
-        register.setVisible(false);
-//        refresh.setVisible(false);
-        acc.setVisible(false);
-        box.setVisible(false);
-        return true;
     }
 }

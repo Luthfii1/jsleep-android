@@ -240,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="City"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textColor="@color/white"
                     />
 
@@ -252,6 +252,7 @@
                     android:backgroundTint="@color/blue_light"
                     android:backgroundTintMode="screen"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:popupBackground="@color/blue_light"
                     android:spinnerMode="dropdown"/>
             </LinearLayout>
@@ -270,7 +271,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="Bed Type"
                     android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
 
                 <Spinner
                     android:id="@+id/spinnerBedType"
